@@ -1,3 +1,4 @@
+package lex;
 public enum Tokens {
 	id,
 	literal_integer, 
@@ -12,5 +13,14 @@ public enum Tokens {
 	sub_operator,
 	mul_operator,
 	div_operator,
+	left_paren,
+	right_paren,
+	function_keyword,
+	print_keyword,
+	end_keyword,
+	while_keyword,
+	do_keyword,
+	repeat_keyword,
+	until_keyword,
 	unknown
 }

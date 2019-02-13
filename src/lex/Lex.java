@@ -1,3 +1,5 @@
+package lex;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,14 +10,22 @@ public class Lex {
 	
 	ArrayList<Token> tokenList;
 	
-	public void Lex(String file) throws FileNotFoundException {
+	public Lex(String fileText) throws FileNotFoundException {
 		tokenList = new ArrayList<Token>();
+		Scanner input = new Scanner(new File(fileText));
 		
-		Scanner input = new Scanner(System.in);
-		System.out.println("Input token to be scanned by lex...");
-		System.out.println("Your tokens is: " + lookup(input.next()));
+		for(int i = 0; input.hasNextLine(); i++) {
+			processLine(input.nextLine(), i);
+		}
 	}
 	
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		for(int i = 0; i < tokenList.size(); i++) {
+			result.append(tokenList.get(i).getType() + " ");
+		}
+		return result.toString();
+	}
 	
 	private void processLine(String line, int lineNo) {
 		Scanner scan = new Scanner(line);
@@ -31,7 +41,24 @@ public class Lex {
 		//Inputs a lexeme string and outputs the specific token
 		
 		if(Character.isLetter(lexeme.charAt(0)))
-			return Tokens.id;
+			if (lexeme.length() == 1) 
+				return Tokens.id;
+			else if(lexeme.equalsIgnoreCase("function"))
+				return Tokens.function_keyword;
+			else if(lexeme.equalsIgnoreCase("print"))
+				return Tokens.print_keyword;
+			else if(lexeme.equalsIgnoreCase("end"))
+				return Tokens.end_keyword;
+			else if(lexeme.equalsIgnoreCase("while"))
+				return Tokens.while_keyword;
+			else if(lexeme.equalsIgnoreCase("do"))
+				return Tokens.do_keyword;
+			else if(lexeme.equalsIgnoreCase("repeat"))
+				return Tokens.repeat_keyword;
+			else if(lexeme.equalsIgnoreCase("until"))
+				return Tokens.until_keyword;
+			else
+				return Tokens.unknown;
 		else if(Character.isDigit(lexeme.charAt(0)))
 			return Tokens.literal_integer;
 		else if(lexeme.charAt(0) == '=') {
@@ -62,6 +89,10 @@ public class Lex {
 			return Tokens.mul_operator;
 		else if(lexeme.equals("/"))
 			return Tokens.div_operator;
+		else if(lexeme.equals("("))
+			return Tokens.left_paren;
+		else if(lexeme.equals(")"))
+			return Tokens.right_paren;
 		else
 			return Tokens.unknown;
 	}
