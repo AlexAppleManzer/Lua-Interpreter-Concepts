@@ -1,7 +1,6 @@
 package lex;
 
 import java.io.FileNotFoundException;
-import java.io.File;
 
 public class test {
 	

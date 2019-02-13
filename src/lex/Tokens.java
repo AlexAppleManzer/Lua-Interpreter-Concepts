@@ -22,5 +22,8 @@ public enum Tokens {
 	do_keyword,
 	repeat_keyword,
 	until_keyword,
+	if_keyword,
+	then_keyword,
+	else_keyword,
 	unknown
 }

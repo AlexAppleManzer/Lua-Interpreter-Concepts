@@ -57,6 +57,12 @@ public class Lex {
 				return Tokens.repeat_keyword;
 			else if(lexeme.equalsIgnoreCase("until"))
 				return Tokens.until_keyword;
+			else if(lexeme.equalsIgnoreCase("if"))
+				return Tokens.if_keyword;
+			else if(lexeme.equalsIgnoreCase("then"))
+				return Tokens.then_keyword;
+			else if(lexeme.equalsIgnoreCase("else"))
+				return Tokens.else_keyword;
 			else
 				return Tokens.unknown;
 		else if(Character.isDigit(lexeme.charAt(0)))
