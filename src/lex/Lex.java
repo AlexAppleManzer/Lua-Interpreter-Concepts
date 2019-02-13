@@ -9,8 +9,10 @@ import java.util.Scanner;
 public class Lex {
 	
 	ArrayList<Token> tokenList;
+	String fileName;
 	
 	public Lex(String fileText) throws FileNotFoundException {
+		fileName = fileText;
 		tokenList = new ArrayList<Token>();
 		Scanner input = new Scanner(new File(fileText));
 		
@@ -21,8 +23,15 @@ public class Lex {
 	
 	public String toString() {
 		StringBuilder result = new StringBuilder();
+		result.append("File: " + fileName + "\n");
+		int j = 0;
 		for(int i = 0; i < tokenList.size(); i++) {
-			result.append(tokenList.get(i).getType() + " ");
+			Token t = tokenList.get(i);
+			if(t.getRow() != j) {
+				j = t.getRow();
+				result.append("\n");
+			}
+			result.append(t.getType() + " ");
 		}
 		return result.toString();
 	}
