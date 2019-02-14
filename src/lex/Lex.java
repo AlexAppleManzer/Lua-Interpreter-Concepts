@@ -24,6 +24,7 @@ public class Lex {
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("File: " + fileName + "\n");
+		
 		int j = 0;
 		for(int i = 0; i < tokenList.size(); i++) {
 			Token t = tokenList.get(i);
@@ -32,25 +33,39 @@ public class Lex {
 				result.append("\n"); // creates a space as it find one in the file 
 			}
 			result.append(t.getLexeme()+ " "); // gets the lexeme 
+			if (t.getType() == Tokens.unknown)
+			{
+				result.append("token causes error on line " + (t.getRow()+1)); 
+				break; 
+				
+			}
+			else 
 			result.append(t.getType() + ", "); // gets the type of lexeme 
+			
+				
 		}
+		
 		return result.toString();
 	}
 	
 	private void processLine(String line, int lineNo) {
 		Scanner scan = new Scanner(line); // read in line 
 		int i = 0; 
-		while(scan.hasNext()) {
+			while(scan.hasNext()) {
 			String tok = scan.next(); // read it into tok 
 			tokenList.add(new Token(lookup(tok), tok, lineNo, i)); // take tok , run it through the look up function and add it to the list 
 			i++;
 		}
 	}
 	
+	
+	
+	
 	private static Tokens lookup(String lexeme) {
 		//Inputs a lexeme string and outputs the specific token
 		
 		if(Character.isLetter(lexeme.charAt(0)))
+								
 			if (lexeme.length() == 1) 
 				return Tokens.id;
 			else if(lexeme.equalsIgnoreCase("function"))
@@ -73,9 +88,11 @@ public class Lex {
 				return Tokens.then_keyword;
 			else if(lexeme.equalsIgnoreCase("else"))
 				return Tokens.else_keyword;
-			else
+			else {
 				return Tokens.unknown;
-		else if(Character.isDigit(lexeme.charAt(0)))
+                         			
+			}
+			else if(Character.isDigit(lexeme.charAt(0)))
 			return Tokens.literal_integer;
 		else if(lexeme.charAt(0) == '=') {
 			if (lexeme.length() == 1)
