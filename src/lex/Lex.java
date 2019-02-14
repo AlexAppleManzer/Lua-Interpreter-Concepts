@@ -16,11 +16,11 @@ public class Lex {
 		tokenList = new ArrayList<Token>();
 		Scanner input = new Scanner(new File(fileText));
 		
-		for(int i = 0; input.hasNextLine(); i++) {
-			processLine(input.nextLine(), i);
+		for(int i = 0; input.hasNextLine(); i++) { 
+			processLine(input.nextLine(), i); // processline 
 		}
 	}
-	
+	// print the arraylist of tokens 
 	public String toString() {
 		StringBuilder result = new StringBuilder();
 		result.append("File: " + fileName + "\n");
@@ -29,19 +29,20 @@ public class Lex {
 			Token t = tokenList.get(i);
 			if(t.getRow() != j) {
 				j = t.getRow();
-				result.append("\n");
+				result.append("\n"); // creates a space as it find one in the file 
 			}
-			result.append(t.getType() + " ");
+			result.append(t.getLexeme()+ " "); // gets the lexeme 
+			result.append(t.getType() + ", "); // gets the type of lexeme 
 		}
 		return result.toString();
 	}
 	
 	private void processLine(String line, int lineNo) {
-		Scanner scan = new Scanner(line);
-		int i = 0;
+		Scanner scan = new Scanner(line); // read in line 
+		int i = 0; 
 		while(scan.hasNext()) {
-			String tok = scan.next();
-			tokenList.add(new Token(lookup(tok), tok, lineNo, i));
+			String tok = scan.next(); // read it into tok 
+			tokenList.add(new Token(lookup(tok), tok, lineNo, i)); // take tok , run it through the look up function and add it to the list 
 			i++;
 		}
 	}
@@ -108,7 +109,7 @@ public class Lex {
 			return Tokens.left_paren;
 		else if(lexeme.equals(")"))
 			return Tokens.right_paren;
-		else
+		else 
 			return Tokens.unknown;
 	}
 
