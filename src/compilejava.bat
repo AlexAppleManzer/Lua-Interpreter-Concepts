@@ -1,5 +1,5 @@
 @echo off
 javac ./lex/*.java
-javac TestLex.java
-java TestLex
+javac *.java
+echo Java code successfully compiled
 pause
