@@ -10,6 +10,7 @@ public class Lex {
 	
 	ArrayList<Token> tokenList;
 	String fileName;
+	Token[][] tokenArray;
 	
 	public Lex(String fileText) throws FileNotFoundException {
 		fileName = fileText;
@@ -18,6 +19,17 @@ public class Lex {
 		
 		for(int i = 0; input.hasNextLine(); i++) { 
 			processLine(input.nextLine(), i); // processline 
+		}
+
+		tokenArray = new Token[tokenList.get(tokenList.size() - 1).getRow() + 1][];
+		int row = -1;
+		for(int i = tokenList.size() - 1; i >= 0; i--) {
+			Token t = tokenList.get(i);
+			if(row != t.getRow()) {
+				row = t.getRow();
+				tokenArray[t.getRow()] = new Token[t.getCol() + 1];
+			}
+			tokenArray[t.getRow()][t.getCol()] = t;
 		}
 	}
 	// print the arraylist of tokens 
@@ -57,9 +69,6 @@ public class Lex {
 			i++;
 		}
 	}
-	
-	
-	
 	
 	private static Tokens lookup(String lexeme) {
 		//Inputs a lexeme string and outputs the specific token
@@ -130,4 +139,13 @@ public class Lex {
 			return Tokens.unknown;
 	}
 
+	public String[] getLineTokens( int lineNo) {
+		Token[] resultTokens = tokenArray[lineNo];
+		String[] result = new String[resultTokens.length];
+		for(int i=0; i<resultTokens.length; i++) {
+			Token t = resultTokens[i];
+			result[t.getCol()] = t.getType().name();
+		}
+		return result;
+	}
 }
