@@ -25,7 +25,10 @@ public class LexServer {
 
                 fromClient = in.readLine();
                 System.out.println("Server: received: " + fromClient);
-                if(fromClient.equals("Quit")){
+                if(fromClient == null){
+                    return;
+                }
+                else if(fromClient.charAt(0) == 'Q'){
                     run = false;
                     toClient = "goodbye :)";
                     out.println(toClient);
