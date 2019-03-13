@@ -28,6 +28,17 @@ class LexCaller:
         result = self.s.recv(1024)
         return result.decode().split()
 
+    def get_all_data(self):
+        self.s.send("a\n".encode())
+        result = self.s.recv(1024)
+        result = result.decode().split()
+
+        def to_matrix(l, n):
+            # beautiful code found on https://stackoverflow.com/questions/14681609/create-a-2d-list-out-of-1d-list
+            return [l[i:i + n] for i in range(0, len(l), n)]
+
+        return to_matrix(result, 2)
+
     def change_file(self, file):
         self.s.send("c {}\n".format(file).encode())
         result = self.s.recv(1024)
@@ -36,10 +47,13 @@ class LexCaller:
     def close_server(self):
         self.s.send("Quit\n".encode())
         result = self.s.recv(1024)
+        self.s.close()
         return result.decode()
+
 
 if __name__ == "__main__":
     lex = LexCaller()
-    print(lex.get_line(input("lineNo?")))
+    print(lex.get_all_data())
     time.sleep(10)
+    lex.close_server()
 

@@ -32,6 +32,14 @@ public class LexServer {
                     run = false;
                     toClient = "goodbye :)";
                     out.println(toClient);
+                } else if(fromClient.charAt(0) == 'a'){
+                    String[] output = lex.getTokensAndLexemes();
+                    StringBuilder toClientSB = new StringBuilder();
+                    for(int i=0; i<output.length; i++){
+                        toClientSB.append(output[i] + " ");
+                    }
+                    toClient = toClientSB.toString();
+                    out.println(toClient);
                 } else if(fromClient.charAt(0) == ('g')) {
                     String[] str = fromClient.split(" ");
                     if(Character.isDigit(str[1].charAt(0))) {

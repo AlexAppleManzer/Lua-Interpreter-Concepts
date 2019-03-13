@@ -148,4 +148,24 @@ public class Lex {
 		}
 		return result;
 	}
+
+	public String[] getLineLexeme( int lineNo) {
+		Token[] resultTokens = tokenArray[lineNo];
+		String[] result = new String[resultTokens.length];
+		for(int i=0; i<resultTokens.length; i++) {
+			Token t = resultTokens[i];
+			result[t.getCol()] = t.getLexeme();
+		}
+		return result;
+	}
+
+	public String[] getTokensAndLexemes() {
+	    String[] result = new String[tokenList.size() * 2];
+	    for(int i=0; i<tokenList.size(); i++) {
+			Token t = tokenList.get(i);
+			result[i * 2] = t.getType().name();
+			result[i * 2 + 1] = t.getLexeme();
+		}
+		return result;
+	}
 }
