@@ -1,10 +1,8 @@
 from parsersrc import block as blk
 
-class IfStatement():
-    def __init__(self):
-        self.blk = blk
+class IfStatement:
+    def __init__(self, expr, blk, blk2 ):
 
-    def ifstatement(self, expr, blk, blk2 ):
         self.expr = expr
         self.blk = blk
         self.blk2 = blk2

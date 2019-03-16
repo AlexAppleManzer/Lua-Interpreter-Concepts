@@ -1,9 +1,9 @@
-from parsersrc.tokens import tokens
+from parsersrc.tokens import Tokens
 
 class BooleanExpression:
      def __init__(self):
-         self.rationalOperator = [self.tokens.eq_operator, self.tokens.ge_operator, self.tokens.gt_operator, \
-                                  self.tokens.ne_operator, self.tokens.lt_operator, self.tokens.le_operator]
+         self.rationalOperator = [Tokens.eq_operator, Tokens.ge_operator, Tokens.gt_operator,
+                                  Tokens.ne_operator, Tokens.lt_operator, Tokens.le_operator]
 
 
      def booleanExpression(self, operator, expr1, expr2):
