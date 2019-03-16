@@ -38,7 +38,7 @@ class Parser:
         block = blk.Block()
         tok = self.tokenList[self.tlp]
         while(self.valid_start_stmt(tok)):
-            stmt = get_stmt()
+            stmt = self.get_stmt()
             block.add(stmt)
             tok = self.tokenList[self.tlp]
         return blk
@@ -61,7 +61,7 @@ class Parser:
             stmt = self.get_repeat_stmt()
         elif self.equals(tok, Tokens.id):
             stmt = self.get_assign_stmt()
-        else
+        else:
             print("uh oh, invalid statment")
         return stmt
 
