@@ -1,6 +1,7 @@
 from parsersrc.tokens import Tokens
 from parsersrc.lexcaller import LexCaller
 from parsersrc.block import Block
+from parsersrc.id import Id
 from parsersrc import program as pgrm
 from parsersrc.ifstatement import IfStatement
 
@@ -67,7 +68,6 @@ class Parser:
         return stmt
 
     def get_if_stmt(self):
-        stmt = "no"
         tok = self.tokenList[self.tlp]
         assert(self.equals(tok, Tokens.if_keyword))
         self.tlp += 1
@@ -154,6 +154,7 @@ class Parser:
     def get_bool_expr(self):
         # eq = 0 ne = 1 gt = 2 ge = 3 lt = 4 le = 5
         tok = self.tokenList[self.tlp]
+        op = -1
         if self.equals(tok, Tokens.eq_operator):
             op = 0
         elif self.equals(tok, Tokens.ne_operator):
@@ -197,6 +198,7 @@ class Parser:
 
         # 0 = add op 1 = sub op 2 = mul op 3 = div op
         tok = self.tokenList[self.tlp]
+        op = -1
         if self.equals(tok, Tokens.add_operator):
             op = 0
         elif self.equals(tok, Tokens.sub_operator):
