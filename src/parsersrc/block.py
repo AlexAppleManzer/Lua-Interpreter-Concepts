@@ -1,5 +1,5 @@
 
-class block:
+class Block:
     def __init__(self):
         self.stmts = []
 

@@ -1,6 +1,6 @@
 from parsersrc.tokens import Tokens
 from parsersrc.lexcaller import LexCaller
-from parsersrc import block as blk
+from parsersrc.block import Block
 from parsersrc import program as pgrm
 from parsersrc.ifstatement import IfStatement
 
@@ -36,13 +36,13 @@ class Parser:
         return pgrm.Program(block)
 
     def get_block(self):
-        block = blk.Block()
+        block = Block()
         tok = self.tokenList[self.tlp]
         while(self.valid_start_stmt(tok)):
             stmt = self.get_stmt()
             block.add(stmt)
             tok = self.tokenList[self.tlp]
-        return blk
+        return block
 
     def valid_start_stmt(self, tok):
         return self.equals(tok, Tokens.id) or self.equals(tok, Tokens.if_keyword) \
@@ -93,9 +93,23 @@ class Parser:
         return IfStatement(expr, blk1, blk2)
 
     def get_while_stmt(self):
-        print("D:")
-        stmt = "no"
-        return stmt
+        tok = self.tokenList[self.tlp]
+        assert (self.equals(tok, Tokens.while_keyword))
+        self.tlp += 1
+
+        expr = self.get_bool_expr()
+
+        tok = self.tokenList[self.tlp]
+        assert (self.equals(tok, Tokens.do_keyword))
+        self.tlp += 1
+
+        blk = self.get_block()
+
+        tok = self.tokenList[self.tlp]
+        assert (self.equals(tok, Tokens.end_keyword))
+        self.tlp += 1
+
+        return WhileStatement(expr, blk)
 
     def get_print_stmt(self):
         tok = self.tokenList[self.tlp]
@@ -115,9 +129,19 @@ class Parser:
         return PrintStatement(expr)
 
     def get_repeat_stmt(self):
-        print("D:")
-        stmt = "no"
-        return stmt
+        tok = self.tokenList[self.tlp]
+        assert (self.equals(tok, Tokens.repeat_keyword))
+        self.tlp += 1
+
+        blk = self.get_block()
+
+        tok = self.tokenList[self.tlp]
+        assert (self.equals(tok, Tokens.until_keyword))
+        self.tlp += 1
+
+        expr = self.get_bool_expr()
+
+        return RepeatStatement(blk, expr)
 
     def get_assign_stmt(self):
         var = self.get_id()
