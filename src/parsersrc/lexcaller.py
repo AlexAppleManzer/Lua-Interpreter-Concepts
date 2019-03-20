@@ -37,7 +37,7 @@ class LexCaller:
             # beautiful code found on https://stackoverflow.com/questions/14681609/create-a-2d-list-out-of-1d-list
             return [l[i:i + n] for i in range(0, len(l), n)]
 
-        return to_matrix(result, 2)
+        return to_matrix(result, 4)
 
     def change_file(self, file):
         self.s.send("c {}\n".format(file).encode())

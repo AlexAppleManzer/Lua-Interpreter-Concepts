@@ -160,11 +160,13 @@ public class Lex {
 	}
 
 	public String[] getTokensAndLexemes() {
-	    String[] result = new String[tokenList.size() * 2];
+	    String[] result = new String[tokenList.size() * 4];
 	    for(int i=0; i<tokenList.size(); i++) {
 			Token t = tokenList.get(i);
-			result[i * 2] = t.getType().name();
-			result[i * 2 + 1] = t.getLexeme();
+			result[i * 4] = t.getType().name();
+			result[i * 4 + 1] = t.getLexeme();
+			result[i * 4 + 2] = Integer.toString(t.getRow());
+			result[i * 4 + 3] = Integer.toString(t.getCol());
 		}
 		return result;
 	}
