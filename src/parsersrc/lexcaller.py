@@ -21,7 +21,7 @@ class LexCaller:
         print("client: Socket created")
 
         self.s.connect((SERVER, PORT))
-        print("client: connection complete")
+        print("client: connection complete!")
 
     def get_line(self, lineNo):
         self.s.send("g {}\n".format(lineNo).encode())

@@ -1,0 +1,10 @@
+File number?Server: Waiting for connection on port 8888...
+Server: Found connection on port 8888
+Server: received: c test4.lua
+Server: Found connection on port 8888
+Server: received: a
+Server: Found connection on port 8888
+Server: received: Quit
+client: Socket created
+client: connection complete!
+6
