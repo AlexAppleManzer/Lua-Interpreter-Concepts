@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project >
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project />
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\interpreter.gpr</vfs_project>
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 42" line=" 25" >
+      <vfs_project>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\interpreter.gpr</vfs_project>
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 12" line=" 24" >
+      <vfs_project>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\interpreter.gpr</vfs_project>
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 14" >
+      <vfs_project>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\interpreter.gpr</vfs_project>
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\src\main.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 37" line=" 13" >
+      <vfs_project>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\interpreter.gpr</vfs_project>
+      <vfs_file>C:\Users\AlexM\IdeaProjects\Lua-Interpreter-Concepts\src\src\main.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>
